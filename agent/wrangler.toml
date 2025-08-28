@@ -1,0 +1,32 @@
+name = "agent-worker"
+main = "src/worker.ts"
+compatibility_date = "2025-08-28"
+
+
+# Bindings
+[[d1_databases]]
+binding = "DB"
+database_name = "agent-db"
+database_id = "YOUR-D1-ID"
+
+
+[[kv_namespaces]]
+binding = "AGENT_KV"
+id = "YOUR-KV-ID"
+
+
+# Optional: R2 if you want object storage
+# [[r2_buckets]]
+# binding = "AGENT_BUCKET"
+# bucket_name = "agent-bucket"
+
+
+# Queue for background extraction
+[[queues.producers]]
+binding = "EXTRACT_QUEUE"
+queue = "extract-queue"
+
+
+[[queues.consumers]]
+queue = "extract-queue"
+script_name = "agent-worker"
